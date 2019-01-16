@@ -1,0 +1,32 @@
+// В этом файле должны быть стили для БЭМ-блока code, его элементов,
+// модификаторов, псевдоселекторов, псевдоэлементов, @media-условий...
+// Очередность: http://nicothin.github.io/idiomatic-pre-CSS/#priority
+
+.code {
+  display: block;
+  width: 100%;
+  max-height: rem(500px);
+  margin-top: $typo-margin-vertical;
+  margin-bottom: $typo-margin-vertical;
+  padding: 0.5rem 1rem;
+  overflow-x: auto;
+  background-color: $gray-lightest;
+  border-radius: $border-radius;
+  border: 1px solid $gray-lighter;
+  white-space: normal;
+  tab-size: 2;
+
+  code {
+    display: block;
+    padding: 0;
+    white-space: pre;
+    background-color: transparent;
+    min-height: 1em;
+
+    p,
+    div {
+      display: inline-block;
+      margin: 0;
+    }
+  }
+}
