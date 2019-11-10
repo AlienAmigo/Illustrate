@@ -11,16 +11,43 @@ block header
   +page-header()
     +logo('/')
       img(src='img/temp-logo.svg', alt='Logo', height='15')
+      p ILLUSTRATE.
     +main-nav('10')
 
 block content
-  h1 Заголовок
-  p Содержимое. #[a(href='blocks-demo.html') Библиотека блоков].
+  section.main-slider
+    .main-slider__slide-wraper
+      img(src='img/ImageArt.png', alt='')
+  h1 Graphic Designer &amp; Illustrator #[span Create/tor]
+  p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis laoreet laoreet leo at dictum.
+
+  .subhead
+
+  section.recent-work
+    .col-3
+      h2.recent-work__head RECENT WORK
+      p.recent-work__text
+    .recent-work__slider
+      article.example
+        .example__img-wrap
+          img(src='img/work01.png', alt='')
+        h3.example__head
+        p.example__text
+
+  section.from-the-blog
+
+  section.about
+    article.about__item
+      h3.about__head
+      p.about__text
+      .about__ico
+
+
 
 block footer
   +page-footer()
-    p «Подвал»
     p Контактный телефон: #[a(href='tel:+70000000000') +7 000 000 00 00]
+    p «Подвал»
 
 //- block page-bottom
 //-   script(src='js/some.js')
