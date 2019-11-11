@@ -21,6 +21,11 @@ $color-warning:               hsl(35, 84%, 62%);
 
 // Семантические цвета
 
+$dark-gray:                   rgb(53, 60, 62); // #353c3e
+$med-gray:                    rgb(64, 73, 76); // #40494c
+$form-gray:                   rgb(60, 67, 69); // #3c4345
+
+
 $text-color:                  $gray-darkest;
 $text-color--muted:           $gray;
 $body-bg:                     rgb(246, 246, 246);
