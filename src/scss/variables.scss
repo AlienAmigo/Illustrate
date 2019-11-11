@@ -76,6 +76,7 @@ $container-lg:                $screen-lg - 30;
 $container-xl:                $screen-xl - 30;
 $container-xxl:               $screen-xxl - 30;
 
+$xl-width:                    950px;
 
 
 // Модульная сетка
@@ -101,6 +102,9 @@ $toggler-part-bg-color:       #000;
 
 $z-index-modal:               100;
 
-$n-grid: 24;
-$grid-margin: 5px;
-$grid-padding: 5px;
+$n-grid:                      24;
+$grid-margin:                 5px;
+$grid-padding:                5px;
+
+$h1:                          80px;
+$h2:                          62px;

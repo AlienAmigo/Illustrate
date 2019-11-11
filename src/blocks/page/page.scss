@@ -38,7 +38,9 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-  }
+    width: $xl-width;
+    min-width: calc(#{xl-width} + 50px);
+    }
 
   &__content {
     flex-grow: 1;

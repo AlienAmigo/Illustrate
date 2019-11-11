@@ -6,10 +6,35 @@
 
   $block-name:                &; // #{$block-name}__element
 
-  display: inline-block;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
   white-space: nowrap;
+  @include Montserrat-Bold(20px, #fff);
+  text-decoration: none;
+  text-transform: uppercase;
 
   img {
     display: block;
+  }
+
+  p {
+    align-self: center;
+    margin: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 90px;
+
+
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 75px;
+      height: 82px;
+      background-color: $orange;
+    }
   }
 }

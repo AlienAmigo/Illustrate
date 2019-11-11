@@ -4,6 +4,40 @@
 
 .page-header {
 
+  position: relative;
 
+  .container {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+  }
 
+  &:before {
+    content: '';
+    display: block;
+    // box-sizing: padding-box;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: calc((100vw / -2) + 50%);
+    width: 100vw;
+    height: calc(#{$h1} + #{$h2} + 4px);
+    border-top: $h1 solid #353c3e;
+    border-bottom: 4px solid #000;
+    background-color: #40494c;
+  }
+
+  &__row1 {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    height: $h1;
+  }
+
+  &__row2 {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    height: $h2;
+  }
 }
