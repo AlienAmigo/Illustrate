@@ -13,13 +13,14 @@ block header
       +logo('/')(class='col-8')
         //- img(src='img/temp-logo.svg', alt='Logo', height='15')
         p ILLUSTRATE.
-      .page-header__row2.slogan.col-14 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      .page-header__slogan.col-14
+        p Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
-    .container
+    .container.page-header__row2
       +main-nav('10')(class='col-17')
-      form.header__search.col-5(method='get', action='', id='header-search')
-        input.header__search-input(type='text')
-        input.header__search-input(type='submit')
+      form.page-header__search.col-7(method='get', action='', id='header-search')
+        input.page-header__search-input(type='text')
+        input.page-header__search-submit(type='submit', value='')
 
 block content
   section.main-slider

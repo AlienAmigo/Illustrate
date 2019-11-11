@@ -8,8 +8,8 @@ let config = {
     "no-js"
   ],
   "alwaysAddBlocks": [
-    // "sprite-svg",
-    // "sprite-png",
+    "sprite-svg",
+    "sprite-png",
     // "object-fit-polyfill",
   ],
   "addStyleBefore": [

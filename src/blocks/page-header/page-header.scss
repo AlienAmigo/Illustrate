@@ -40,4 +40,43 @@
     align-content: center;
     height: $h2;
   }
+
+  &__slogan {
+    align-self: center;
+
+    p {
+      align-self: center;
+      margin: 0;
+      padding: 0;
+      text-align: right;
+      @include Montserrat-Regular(13px, #959595);
+      font-style: italic;
+    }
+  }
+
+  &__search {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    height: 100%;
+    background-color: $form-gray;
+
+    &-input {
+      width: 60%;
+      border: none;
+      background-color: rgba(0, 0, 0, 0);
+      outline: 0;
+    }
+
+    &-submit {
+      position: relative;
+      width: 40%;
+      border: none;
+      background-color: rgba(0, 0, 0, 0);
+      outline: 0;
+      color: rgba(0, 0, 0, 0);
+      cursor: pointer;
+      @include sprite($find);
+    }
+  }
 }
