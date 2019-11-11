@@ -8,6 +8,7 @@ $grid-padding: 15px !default; // отступы
 .container {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   align-content: stretch;
   flex-wrap: no-wrap;
   margin-left: calc(#{$grid-margin} * -1);

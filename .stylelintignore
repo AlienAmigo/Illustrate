@@ -4,3 +4,4 @@ src/scss/style.scss
 src/blocks/sprite-png/sprite-png.scss
 src/blocks/page/page.scss
 src/blocks/blocks-library/blocks-library.scss
+src/js/jquery-3.4.1.min.js
