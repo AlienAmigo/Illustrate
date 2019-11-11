@@ -75,8 +75,8 @@ $container-xxl:               $screen-xxl - 30;
 
 // Модульная сетка
 
-$grid-columns:                12;
-$grid-gutter-width:           30px;
+// $grid-columns:                12;
+// $grid-gutter-width:           30px;
 
 
 
@@ -95,3 +95,7 @@ $toggler-part-height:         3px;
 $toggler-part-bg-color:       #000;
 
 $z-index-modal:               100;
+
+$n-grid: 24;
+$grid-margin: 5px;
+$grid-padding: 5px;

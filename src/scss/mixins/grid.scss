@@ -1,0 +1,36 @@
+$n-grid: 12 !default; // количество колонок
+$grid-margin: 15px !default; // поля
+$grid-padding: 15px !default; // отступы
+// @mixin col-width($num) {
+//   width: calc(100% / (#{$n-grid}/#{$num}));
+// }
+
+.container {
+  display: flex;
+  flex-direction: row;
+  align-content: stretch;
+  flex-wrap: no-wrap;
+  margin-left: calc(#{$grid-margin} * -1);
+  margin-right: calc(#{$grid-margin} * -1);
+}
+
+
+[class*='col-'] {
+  padding-left: $grid-padding;
+  padding-right: $grid-padding;
+}
+
+@for $i from 1 through $n-grid {   /* stylelint-disable-line */
+
+  .col-#{$i} {
+    width: calc(100% / (#{$n-grid} / #{$i}));
+  }
+}
+
+.no-gutters {
+  margin: 0;
+
+  [class*='col-'] {
+    padding: 0;
+  }
+}
