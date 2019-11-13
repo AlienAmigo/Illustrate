@@ -2,14 +2,6 @@
 /* eslint-disable no-console */
 'use strict';
 
-// Проверка количества съедаемой памяти
-// setInterval(function(){ // eslint-disable-line
-//   let memory = process.memoryUsage()
-//   let date = new Date();
-//   console.log(`[${addZero(date.getHours())}:${addZero(date.getMinutes())}:${addZero(date.getSeconds())}]`, 'Memory usage (heapUsed):', (memory.heapUsed / 1024 / 1024).toFixed(2) + 'Mb');
-// }, 1000 * 10);
-// function addZero(i) { return (i < 10) ? i = "0" + i : i;}
-
 // Пакеты, использующиеся при обработке
 const { series, parallel, src, dest, watch, lastRun } = require('gulp');
 const fs = require('fs');
@@ -38,7 +30,6 @@ const spritesmith = require('gulp.spritesmith');
 const merge = require('merge-stream');
 const imagemin = require('gulp-imagemin');
 const prettyHtml = require('gulp-pretty-html');
-const replace = require('gulp-replace');
 const ghpages = require('gh-pages');
 const path = require('path');
 
@@ -46,7 +37,7 @@ const path = require('path');
 const buildLibrary = process.env.BUILD_LIBRARY == 'yes' ? true : false;
 const nth = {};
 nth.config = require('./config.js');
-nth.blocksFromHtml = Object.create(nth.config.alwaysAddBlocks); // блоки из конфига сразу добавим в список блоков
+nth.blocksFromHtml = []; // блоки из HTML (только если имеют свою папку блока!)
 nth.scssImportsList = []; // список импортов стилей
 const dir = nth.config.dir;
 
@@ -63,7 +54,7 @@ let pugOption = {
 let prettyOption = {
   indent_size: 2,
   indent_char: ' ',
-  unformatted: ['code', 'em', 'strong', 'span', 'i', 'b', 'br', 'script'],
+  unformatted: ['code', 'em', 'strong', 'span', 'i', 'b', 'br'],
   content_unformatted: [],
 };
 
@@ -106,9 +97,6 @@ function compilePug() {
     .pipe(debug({title: 'Compiles '}))
     .pipe(pug(pugOption))
     .pipe(prettyHtml(prettyOption))
-    .pipe(replace(/^(\s*)(<button.+?>)(.*)(<\/button>)/gm, '$1$2\n$1  $3\n$1$4'))
-    .pipe(replace(/^( *)(<.+?>)(<script>)([\s\S]*)(<\/script>)/gm, '$1$2\n$1$3\n$4\n$1$5\n'))
-    .pipe(replace(/^( *)(<.+?>)(<script\s+src.+>)(?:[\s\S]*)(<\/script>)/gm, '$1$2\n$1$3$4'))
     .pipe(through2.obj(getClassesToBlocksList))
     .pipe(dest(dir.build));
 }
@@ -130,9 +118,6 @@ function compilePugFast() {
     .pipe(debug({title: 'Compiles '}))
     .pipe(pug(pugOption))
     .pipe(prettyHtml(prettyOption))
-    .pipe(replace(/^(\s*)(<button.+?>)(.*)(<\/button>)/gm, '$1$2\n$1  $3\n$1$4'))
-    .pipe(replace(/^( *)(<.+?>)(<script>)([\s\S]*)(<\/script>)/gm, '$1$2\n$1$3\n$4\n$1$5\n'))
-    .pipe(replace(/^( *)(<.+?>)(<script\s+src.+>)(?:[\s\S]*)(<\/script>)/gm, '$1$2\n$1$3$4'))
     .pipe(through2.obj(getClassesToBlocksList))
     .pipe(dest(dir.build));
 }
@@ -159,41 +144,12 @@ function copyImg(cb) {
     let src = `${dir.blocks}${block}/img`;
     if(fileExist(src)) copiedImages.push(src);
   });
-  if(copiedImages.length) {
-    (async () => {
-      await cpy(copiedImages, `${dir.build}img`);
-      cb();
-    })();
-  }
-  else {
+  (async () => {
+    await cpy(copiedImages, `${dir.build}img`);
     cb();
-  }
+  })();
 }
 exports.copyImg = copyImg;
-
-// PETER! копирование картинок из src/img
-function copyRootImages() {
-  return src(dir.src + 'img/**/*.{jpg,jpeg,png,svg,webp,gif}')
-    .pipe(dest(dir.build + 'img/'));
-}
-exports.copyRootImages = copyRootImages;
-
-
-// PETER! копируем шрифты
-function copyFonts() {
-  return src(dir.src + 'fonts/*.{ttf,eot,svg,woff,woff2}')
-    .pipe(dest(dir.build + 'fonts/'));
-}
-exports.copyFonts = copyFonts;
-
-
-// PETER! копирование сторонних css-файлов из src/css
-function copyAddCSS() {
-  return src(dir.src + 'css/*.{css,map}')
-    .pipe(dest(dir.build + 'css/'));
-}
-exports.copyAddCSS = copyAddCSS;
-
 
 
 function generateSvgSprite(cb) {
@@ -246,15 +202,10 @@ function writeSassImportsFile(cb) {
   nth.config.addStyleBefore.forEach(function(src) {
     newScssImportsList.push(src);
   });
-  nth.config.alwaysAddBlocks.forEach(function(blockName) {
-    if (fileExist(`${dir.blocks}${blockName}/${blockName}.scss`)) newScssImportsList.push(`${dir.blocks}${blockName}/${blockName}.scss`);
-  });
   let allBlocksWithScssFiles = getDirectories('scss');
   allBlocksWithScssFiles.forEach(function(blockWithScssFile){
-    let url = `${dir.blocks}${blockWithScssFile}/${blockWithScssFile}.scss`;
     if (nth.blocksFromHtml.indexOf(blockWithScssFile) == -1) return;
-    if (newScssImportsList.indexOf(url) > -1) return;
-    newScssImportsList.push(url);
+    newScssImportsList.push(`${dir.blocks}${blockWithScssFile}/${blockWithScssFile}.scss`);
   });
   nth.config.addStyleAfter.forEach(function(src) {
     newScssImportsList.push(src);
@@ -289,7 +240,7 @@ function compileSass() {
       }
     }))
     .pipe(debug({title: 'Compiles:'}))
-    .pipe(sass({includePaths: [__dirname+'/','node_modules']}))
+    .pipe(sass({includePaths: [__dirname+'/']}))
     .pipe(postcss(postCssPlugins))
     .pipe(csso({
       restructure: false,
@@ -301,27 +252,18 @@ exports.compileSass = compileSass;
 
 
 function writeJsRequiresFile(cb) {
-  const jsRequiresList = [];
-  nth.config.addJsBefore.forEach(function(src) {
-    jsRequiresList.push(src);
-  });
-  const allBlocksWithJsFiles = getDirectories('js');
-  allBlocksWithJsFiles.forEach(function(blockName){
-    if (nth.config.alwaysAddBlocks.indexOf(blockName) == -1) return;
-    jsRequiresList.push(`../blocks/${blockName}/${blockName}.js`)
-  });
-  allBlocksWithJsFiles.forEach(function(blockName){
-    let src = `../blocks/${blockName}/${blockName}.js`
-    if (nth.blocksFromHtml.indexOf(blockName) == -1) return;
-    if (jsRequiresList.indexOf(src) > -1) return;
-    jsRequiresList.push(src);
-  });
-  nth.config.addJsAfter.forEach(function(src) {
-    jsRequiresList.push(src);
-  });
   let msg = `\n/*!*${doNotEditMsg.replace(/\n /gm,'\n * ').replace(/\n\n$/,'\n */\n\n')}`;
   let jsRequires = msg + '/* global require */\n\n';
-  jsRequiresList.forEach(function(src) {
+  nth.config.addJsBefore.forEach(function(src) {
+    jsRequires += `require('${src}');\n`;
+  });
+  const allBlocksWithJsFiles = getDirectories('js');
+  const allUsedBlocks = nth.blocksFromHtml.concat(nth.config.alwaysAddBlocks);
+  allBlocksWithJsFiles.forEach(function(blockWithJsFile){
+    if (allUsedBlocks.indexOf(blockWithJsFile) == -1) return;
+    jsRequires += `require('../blocks/${blockWithJsFile}/${blockWithJsFile}.js');\n`;
+  });
+  nth.config.addJsAfter.forEach(function(src) {
     jsRequires += `require('${src}');\n`;
   });
   jsRequires += msg;
@@ -463,12 +405,7 @@ function serve() {
   ));
 
   // Картинки: все события
-  watch([`${dir.blocks}**/img/*.{jpg,jpeg,png,gif,svg,webp}`],
-          { events: ['all'], delay: 100 }, series(copyImg, reload));
-
-  // PETER: Картинки: основная папка img
-  watch([dir.src + 'img/*.{jpg,jpeg,png,svg,webp,gif}'],
-        { events: ['all'], delay: 100 }, series(copyRootImages, reload));
+  watch([`${dir.blocks}**/img/*.{jpg,jpeg,png,gif,svg,webp}`], { events: ['all'], delay: 100 }, series(copyImg, reload));
 
   // Спрайт SVG
   watch([`${dir.blocks}sprite-svg/svg/*.svg`], { events: ['all'], delay: 100 }, series(
@@ -484,41 +421,22 @@ function serve() {
     compileSass,
     reload,
   ));
-
-  // Шрифты
-  watch([`${dir.src}fonts/*.{ttf,eot,svg,woff,woff2`], { events: ['all'], delay: 100 }, series(
-      copyFonts,
-      reload,
-    ));
-
-  // Cторонние css-файлы
-  watch([`${dir.src}css/*.{,cssmap}`], { events: ['all'], delay: 100 }, series(
-    copyAddCSS,
-    reload,
-  ));
 }
-
-
-
 
 
 exports.build = series(
   parallel(clearBuildDir, writePugMixinsFile),
-  parallel(copyFonts),
   parallel(compilePugFast, copyAssets, generateSvgSprite, generatePngSprite),
-  parallel(copyImg, copyRootImages, writeSassImportsFile, writeJsRequiresFile),
+  parallel(copyImg, writeSassImportsFile, writeJsRequiresFile),
   parallel(compileSass, buildJs),
-  parallel(copyAddCSS),
 );
 
 
 exports.default = series(
   parallel(clearBuildDir, writePugMixinsFile),
-  parallel(copyFonts),
   parallel(compilePugFast, copyAssets, generateSvgSprite, generatePngSprite),
-  parallel(copyImg, copyRootImages, writeSassImportsFile, writeJsRequiresFile),
+  parallel(copyImg, writeSassImportsFile, writeJsRequiresFile),
   parallel(compileSass, buildJs),
-  parallel(copyAddCSS),
   serve,
 );
 
@@ -549,7 +467,7 @@ function getClassesToBlocksList(file, enc, cb) {
   if (processThisFile) {
     const fileContent = file.contents.toString();
     let classesInFile = getClassesFromHtml(fileContent);
-    // nth.blocksFromHtml = [];
+    nth.blocksFromHtml = [];
     // Обойдём найденные классы
     for (let item of classesInFile) {
       // Не Блок или этот Блок уже присутствует?
@@ -562,7 +480,7 @@ function getClassesToBlocksList(file, enc, cb) {
       nth.blocksFromHtml.push(item);
     }
     console.log('---------- Used HTML blocks: ' + nth.blocksFromHtml.join(', '));
-    file.contents = new Buffer.from(fileContent);
+    file.contents = new Buffer(fileContent);
   }
   this.push(file);
   cb();
@@ -577,7 +495,7 @@ function filterShowCode(text, options) {
   var result = '<pre class="code">\n';
   if (typeof(options['first-line']) !== 'undefined') result = result + '<code>' + options['first-line'] + '</code>\n';
   for (var i = 0; i < (lines.length - 1); i++) { // (lines.length - 1) для срезания последней строки (пустая)
-    result = result + '<code>' + lines[i].replace(/</gm, '&lt;') + '</code>\n';
+    result = result + '<code>' + lines[i] + '</code>\n';
   }
   result = result + '</pre>\n';
   result = result.replace(/<code><\/code>/g, '<code>&nbsp;</code>');

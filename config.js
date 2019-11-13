@@ -1,52 +1,46 @@
 /* global module */
 
 let config = {
-  "notGetBlocks": [
-    "blocks-demo.html"
+  'notGetBlocks': [
+    'blocks-demo.html',
   ],
-  "ignoredBlocks": [
-    "no-js"
+  'ignoredBlocks': [
+    'no-js',
   ],
-  "alwaysAddBlocks": [
-    "sprite-svg",
-    "sprite-png",
-    // "object-fit-polyfill",
+  'alwaysAddBlocks': [
+    // 'sprite-svg',
+    'sprite-png',
+    // 'object-fit-polyfill',
   ],
-  "addStyleBefore": [
-    "src/scss/fonts.scss",
-    "src/scss/variables.scss",
-    "src/scss/mixins.scss"
+  'addStyleBefore': [
+    'src/scss/variables.scss',
+    'src/scss/fonts.scss',
+    'src/scss/mixins.scss',
+    // 'somePackage/dist/somePackage.css', // для 'node_modules/somePackage/dist/somePackage.css',
   ],
-  "addStyleAfter": [
-    // "src/scss/print.scss"
+  'addStyleAfter': [
+    // 'src/scss/print.scss',
   ],
-  "addJsBefore": [],
-  "addJsAfter": [
-    "./script.js"
+  'addJsBefore': [
+    // 'src/js/owl.carousel.min.js'
+    // 'somePackage/dist/somePackage.js', // для 'node_modules/somePackage/dist/somePackage.js',
   ],
-  "addAssets": {
-    "src/fonts/montserrat-bold.eot": "fonts/",
-    "src/fonts/montserrat-bold.ttf": "fonts/",
-    "src/fonts/montserrat-bold.woff": "fonts/",
-    "src/fonts/montserrat-bold.woff2": "fonts/",
-    "src/fonts/montserrat-regular.eot": "fonts/",
-    "src/fonts/montserrat-regular.ttf": "fonts/",
-    "src/fonts/montserrat-regular.woff": "fonts/",
-    "src/fonts/montserrat-regular.woff2": "fonts/",
-    "src/fonts/quicksand-bold-webfont.eot": "fonts/",
-    "src/fonts/quicksand-bold-webfont.ttf": "fonts/",
-    "src/fonts/quicksand-bold-webfont.woff": "fonts/",
-    "src/fonts/quicksand-bold-webfont.woff2": "fonts/",
-
-    "src/fonts/demo-empty-open-sans.woff2": "fonts/",
-    // "src/img/demo-avatar-*": "img/",
-    // "src/img/DSC_*": "img/",
-    // "src/favicon/*.{png,ico,svg,xml,webmanifest}": "img/favicon",
+  'addJsAfter': [
+    './script.js',
+  ],
+  'addAssets': {
+    'src/js/jquery-3.4.1.min.js': 'js/',
+    'src/blocks/owl-carousel/code.js': 'js/',
+    'src/blocks/owl-carousel/owl.carousel.min.js': 'js/',
+    'src/fonts/demo-empty-open-sans.woff2': 'fonts/',
+    'src/img/demo-*.{png,svg,jpg,jpeg}': 'img/',
+    // 'src/favicon/*.{png,ico,svg,xml,webmanifest}': 'img/favicon',
+    // 'node_modules/somePackage/images/*.{png,svg,jpg,jpeg}': 'img/',
   },
-  "dir": {
-    "src": "src/",
-    "build": "build/",
-    "blocks": "src/blocks/"
+  'dir': {
+    'src': 'src/',
+    'build': 'build/',
+    'blocks': 'src/blocks/'
   }
 };
 
