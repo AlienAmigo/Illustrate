@@ -66,17 +66,32 @@
       border: none;
       background-color: rgba(0, 0, 0, 0);
       outline: 0;
+      @include Montserrat-Regular(13px, #fff);
+    }
+
+    &-submit-wrap {
+      position: relative;
+      height: 100%;
+      width: 40%;
     }
 
     &-submit {
       position: relative;
-      width: 40%;
+      width: 100%;
       border: none;
       background-color: rgba(0, 0, 0, 0);
       outline: 0;
       color: rgba(0, 0, 0, 0);
       cursor: pointer;
-      @include sprite($find);
+
+      &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        @include sprite($find);
+      }
     }
   }
 }

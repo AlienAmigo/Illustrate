@@ -11,7 +11,8 @@ block header
   +page-header()
     .page-header__row1.container
       +logo('/')(class='col-8')
-        //- img(src='img/temp-logo.svg', alt='Logo', height='15')
+        .logo__img-wrap
+          img(src='img/pencil.png', alt='Logo', height='15')
         p ILLUSTRATE.
       .page-header__slogan.col-14
         p Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -20,7 +21,8 @@ block header
       +main-nav('10')(class='col-17')
       form.page-header__search.col-7(method='get', action='', id='header-search')
         input.page-header__search-input(type='text')
-        input.page-header__search-submit(type='submit', value='')
+        .page-header__search-submit-wrap
+          input.page-header__search-submit(type='submit', value='')
 
 block content
   section.main-slider

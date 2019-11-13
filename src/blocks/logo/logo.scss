@@ -14,8 +14,27 @@
   text-decoration: none;
   text-transform: uppercase;
 
+  &:hover {
+    color: #fff;
+  }
+
+  &__img-wrap {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    z-index: 1;
+    margin-bottom: -5px;
+    width: 75px;
+    height: 82px;
+    border-bottom: 3px solid $dark-orange;
+    background-color: $orange;
+  }
+
   img {
-    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: none;
   }
 
   p {
@@ -23,18 +42,17 @@
     margin: 0;
     padding-top: 0;
     padding-bottom: 0;
-    padding-left: 90px;
+    padding-left: 18px;
 
-
-    &:before {
-      content: '';
-      display: block;
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 75px;
-      height: 82px;
-      background-color: $orange;
-    }
+    // &:before {
+    //   content: '';
+    //   display: block;
+    //   position: absolute;
+    //   left: 0;
+    //   top: 0;
+    //   width: 75px;
+    //   height: 82px;
+    //   background-color: $orange;
+    // }
   }
 }
