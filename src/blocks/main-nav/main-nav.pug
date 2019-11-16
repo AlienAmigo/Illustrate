@@ -1,7 +1,7 @@
 //- Все примеси в этом файле должны начинаться c имени блока (main-nav)
 //- Структура меню — в main-nav.data.pug
 
-mixin main-nav(selectedID)
+mixin main-nav(/*selectedID*/)
 
   //- Принимает:
   //-   selectedID {string} - id пункта меню (по умолчанию — из main-nav.data.pug)
@@ -9,27 +9,14 @@ mixin main-nav(selectedID)
         +main-nav('1')
 
   //- подключаем файл со структурой данных блока
-  //- include main-nav.data.pug
+  include main-nav.data.pug
 
   nav.main-nav#nav&attributes(attributes)
-    +burger('Показать главное меню', 'nav', 'main-nav--open')(class='main-nav__toggler')
+    //- +burger('Показать главное меню', 'nav', 'main-nav--open')(class='main-nav__toggler')
     ul.main-nav__list
-      -
-        var myMenuList =
-        [
-          "Home",
-          "About",
-          "Art",
-          "Work",
-          "Ill",
-          "Blog",
-          "Contact"
-        ];
-
-      -
-        for (i=0; i < myMenuList.length; i++)
-          li.main-nav__item
-            a.main-nav__link= myMenuList[i]
+      - for (i=0; i < myMenuList.length; i++)
+        li.main-nav__item
+          a.main-nav__link= myMenuList[i]
 
       //- each menuItem in mainMenu
       //-   +main-nav-item(selectedID, menuItem, 1)
