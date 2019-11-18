@@ -26,10 +26,12 @@ block header
 
 block content
   section.main-slider
-    .main-slider__slide-wraper
-      img(src='img/ImageArt.png', alt='')
-  h1 Graphic Designer &amp; Illustrator #[span Create/tor]
-  p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis laoreet laoreet leo at dictum.
+    .main-slider__inner.owl-carousel.owl-carousel-1
+      .main-slider__img-wrap
+        img(src='img/ImageArt.png', alt='')
+    .main-slider__title
+      h1 Graphic Designer &amp; Illustrator #[span Create/tor]
+      p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis laoreet laoreet leo at dictum.
 
   .subhead
     p.subhead__head Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum consectetur nisi a dolor iaculis id viverra lectus facilisis. Curabitur diam tellus,
@@ -39,7 +41,7 @@ block content
     .col-6
       h2.recent-work__head RECENT WORK
       p.recent-work__text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis laoreet laoreet leo at dictum.
-    .recent-work__slider.col-18
+    .recent-work__slider.col-18.owl-carousel.owl-carousel-2
       article.example
         .example__img-wrap
           img(src='img/work01.png', alt='')

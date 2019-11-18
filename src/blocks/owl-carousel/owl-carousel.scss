@@ -1,0 +1,106 @@
+// В этом файле должны быть стили для БЭМ-блока owl-carousel, его элементов,
+// модификаторов, псевдоселекторов, псевдоэлементов, @media-условий...
+// Очередность: http://nicothin.github.io/idiomatic-pre-CSS/#priority
+
+// .owl-carousel {
+
+//   $block-name:                &; // #{$block-name}__element
+// }
+
+@import 'scss/owl.carousel.scss';
+@import 'scss/owl.theme.default.scss';
+
+@mixin arrow() {
+  display: block;
+  position: absolute;
+  // top: 50%;
+  top: calc((341px - 34px) / 2);
+  width: 34px;
+  height: 34px;
+  color: rgba(0, 0, 0, 0);
+}
+
+@mixin arrow-2() {
+  display: block;
+  position: absolute;
+  top: calc((181px - 20px) / 2);
+  color: rgba(0, 0, 0, 0);
+}
+
+// .owl-slider-1 {
+
+//   .owl {
+
+//     $block-name:                &; // #{$block-name}__element
+
+//     &-prev span {
+//       @include arrow();
+//       left: 11px;
+//       @include sprite($arrow_left); /* stylelint-disable-line */
+//     }
+
+//     &-next span {
+//       @include arrow();
+//       right: 11px;
+//       @include sprite($arrow_right); /* stylelint-disable-line */
+//     }
+
+//     &-dots {
+//       display: flex;
+//       flex-direction: row;
+//       justify-content: center;
+//       margin-left: auto;
+//       margin-right: auto;
+//     }
+
+//     &-dot {
+//       outline: none;
+
+//       span {
+//         display: block;
+//         box-sizing: border-box;
+//         width: 12px;
+//         height: 12px;
+//         margin-top: 5px;
+//         margin-right: 5px;
+//         border-radius: 6px;
+//         border: 1px solid $text-gray;
+//       }
+
+//       &:last-child {
+//         margin-right: 0;
+//       }
+
+//       &.active span { /* stylelint-disable-line */
+//         background-color: $text-gray;
+//       }
+//     }
+//   }
+// }
+
+// .owl-slider-2 {
+
+//   .owl {
+
+//     &-nav {
+//       display: flex !important; /* stylelint-disable-line */
+//       position: absolute;
+//       top: 0;
+//       left: 0;
+//       height: 0;
+//       width: 100%;
+//     }
+
+//     &-prev span {
+//       @include arrow-2(); /* stylelint-disable-line */
+//       left: -27px;
+//       @include sprite($arrow-invert-19-copy); /* stylelint-disable-line */
+//     }
+
+//     &-next span {
+//       @include arrow-2(); /* stylelint-disable-line */
+//       right: -27px;
+//       @include sprite($arrow-invert-19); /* stylelint-disable-line */
+//     }
+//   }
+// }
