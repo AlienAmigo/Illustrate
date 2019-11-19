@@ -5,4 +5,6 @@
 .from-the-blog {
 
   $block-name:                &; // #{$block-name}__element
+
+  @include example-header();
 }

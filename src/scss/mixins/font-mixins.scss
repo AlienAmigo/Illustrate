@@ -23,8 +23,26 @@
 }
 
 @mixin h2-text {
+  margin-top: 0;
   margin-bottom: 12px;
-  @include Montserrat-Regular(16px, $dark-gray);
+  padding: 0;
+  @include Montserrat-Bold(16px, $dark-gray);
+  text-transform: uppercase;
   line-height: 22px;
+}
 
+@mixin example-header() {
+
+  &__slider-inner {
+    align-items: stretch;
+  }
+
+  &__head {
+    @include h2-text;
+  }
+
+  &__text {
+    @include Montserrat-Regular(12px, #8f8f8f);
+    line-height: 21px;
+  }
 }

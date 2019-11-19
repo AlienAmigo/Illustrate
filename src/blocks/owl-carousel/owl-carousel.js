@@ -12,6 +12,7 @@ $(document).ready(function(){
     loop: true,
     nav: true,
     margin: 10,
+    // autoHeight: true,
     // autoWidth: true,
     items: 3,
   });
