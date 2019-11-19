@@ -2,7 +2,7 @@ $(document).ready(function(){
   $(".owl-carousel-1").owlCarousel({
     loop: true,
     nav: true,
-    dots: true,
+    dots: false,
     items: 1,
   });
 });
@@ -19,7 +19,7 @@ $(document).ready(function(){
 
 
 $(document).ready(function(){
-  $(".owl-carousel-2").owlCarousel({
+  $(".owl-carousel-3").owlCarousel({
     loop: true,
     nav: true,
     margin: 10,

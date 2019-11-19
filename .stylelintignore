@@ -5,3 +5,17 @@ src/blocks/sprite-png/sprite-png.scss
 src/blocks/page/page.scss
 src/blocks/blocks-library/blocks-library.scss
 src/js/jquery-3.4.1.min.js
+
+# файлы owl-carousel
+src/blocks/owl-carousel/scss/_animate.scss
+src/blocks/owl-carousel/scss/_autoheight.scss
+src/blocks/owl-carousel/scss/_core.scss
+src/blocks/owl-carousel/scss/_lazyload.scss
+src/blocks/owl-carousel/scss/_theme.scss
+src/blocks/owl-carousel/scss/_theme.default.scss
+src/blocks/owl-carousel/scss/_theme.green.scss
+src/blocks/owl-carousel/scss/_video.scss
+src/blocks/owl-carousel/scss/owl.carousel.scss
+src/blocks/owl-carousel/scss/owl.theme.default.scss
+src/blocks/owl-carousel/scss/owl.theme.green.scss
+src/blocks/owl-carousel/scss/owl.theme.green.scss

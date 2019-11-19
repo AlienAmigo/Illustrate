@@ -7,6 +7,8 @@
   $block-name:                &; // #{$block-name}__element
 
   display: flex;
+  flex-direction: row;
+  align-content: center;
   position: relative;
   height: 563px;
   min-width: 100%;
@@ -14,6 +16,7 @@
 
   &__inner {
     display: flex;
+
     position: relative;
     height: 563px;
     width: 100%;
@@ -28,6 +31,7 @@
     position: absolute;
     top: calc(50% - (552px / 2));
     left: calc(50% - (552px / 2));
+    z-index: 10;
     margin: 0;
     width: 552px;
     height: 552px;
