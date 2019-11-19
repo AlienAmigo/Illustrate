@@ -13,8 +13,10 @@
 
 
   &__inner {
+    display: flex;
     position: relative;
     height: 563px;
+    width: 100%;
     min-width: 100%;
   }
 
@@ -25,13 +27,31 @@
     align-content: center;
     position: absolute;
     top: calc(50% - (552px / 2));
-    height: calc(50% - (552px / 2));
+    left: calc(50% - (552px / 2));
+    margin: 0;
     width: 552px;
     height: 552px;
-    padding-left: 80px;
-    padding-right: 80px;
+    padding-left: 70px;
+    padding-right: 70px;
     border-radius: calc(552px / 2);
     border: 20px solid $body-bg;
     background-color: #fff;
+
+    h1 {
+      @include Montserrat-Bold(51px, $text-design-color);
+      line-height: 43px;
+      text-transform: uppercase;
+      text-align: center;
+
+      span {
+        color: $design-color;
+      }
+    }
+
+    p {
+      @include Montserrat-Regular(13px, $text-dark-gray);
+      line-height: 22px;
+      text-align: center;
+    }
   }
 }

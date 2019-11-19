@@ -21,3 +21,10 @@
   font-size: $mx-font-size;
   color: $mx-font-color;
 }
+
+@mixin h2-text {
+  margin-bottom: 12px;
+  @include Montserrat-Regular(16px, $dark-gray);
+  line-height: 22px;
+
+}

@@ -30,7 +30,7 @@ let config = {
   ],
   'addAssets': {
     'src/js/jquery-3.4.1.min.js': 'js/',
-    'src/blocks/owl-carousel/code.js': 'js/',
+    // 'src/blocks/owl-carousel/code.js': 'js/',
     'src/blocks/owl-carousel/owl.carousel.min.js': 'js/',
     'src/fonts/demo-empty-open-sans.woff2': 'fonts/',
     'src/img/demo-*.{png,svg,jpg,jpeg}': 'img/',

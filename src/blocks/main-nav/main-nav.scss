@@ -49,6 +49,10 @@
     &:after {
       content: '/';
     }
+
+    &:hover {
+      color: #fff;
+    }
   }
 }
 
